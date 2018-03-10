@@ -52,32 +52,35 @@ if ($projectCount > 0) { sort($dirArray); } // sort 'em
       ?>
       <?php foreach ($dirArray as $dir):?>
 
-        <?php
-        if($count % 2 == 0) : ?>
-          <li class="list-group-item" style="background-color:rgb(83,93,103);color:#f0f3bd;">
-        <?php else :?>
-          <li class="list-group-item" style="background-color:#6b7999;">
-        <?php endif; ?>
-        <span style="color:#f0f3bd;"><a style="color:#f0f3bd;" href="<?php echo $dir ;?>">
-          <?php
-          echo $dir;
-          $stat = stat($dir);
-          ?>
-          </a>
-          <span class="float-right">
-            <?php
-            echo date('d/m/Y H:i:s', $stat['mtime']);
-            ?>
-          </span>
-        </span></li>
       <?php
-        $count++;
-      endforeach;
-      ?>
-      <?php else: ?>
-        <li class="list-group-item list-group-item-dark" style="background-color:rgb(83,93,103);"><span style="color:#f0f3bd;">Nothing here, start adding projects to your server.</span></li>
-      <?php endif; ?>
-    </ul>
+      // Check to change the color one line in two
+      if($count % 2 == 0) : ?>
+        <li class="list-group-item" style="background-color:rgb(83,93,103);color:#f0f3bd;">
+      <?php else :?>
+        <li class="list-group-item" style="background-color:#6b7999;">
+          <?php endif; ?>
+          <span style="color:#f0f3bd;">
+            <a style="color:#f0f3bd;" href="<?php echo $dir ;?>">
+              <?php
+              echo $dir;
+              $stat = stat($dir);
+              ?>
+            </a>
+            <span class="float-right">
+              <?php
+              echo date('d/m/Y H:i:s', $stat['mtime']);
+              ?>
+            </span>
+          </span>
+        </li>
+        <?php
+          $count++;
+        endforeach;
+        ?>
+        <?php else: ?>
+          <li class="list-group-item list-group-item-dark" style="background-color:rgb(83,93,103);"><span style="color:#f0f3bd;">Nothing here, start adding projects to your server.</span></li>
+        <?php endif; ?>
+      </ul>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
