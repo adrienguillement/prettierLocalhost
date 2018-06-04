@@ -52,27 +52,30 @@ if ($projectCount > 0) { sort($dirArray); } // sort 'em
       ?>
       <?php foreach ($dirArray as $dir):?>
 
+      <a style="color:#f0f3bd;" href="<?php echo $dir ;?>">
       <?php
       // Check to change the color one line in two
       if($count % 2 == 0) : ?>
         <li class="list-group-item" style="background-color:rgb(83,93,103);color:#f0f3bd;">
       <?php else :?>
-        <li class="list-group-item" style="background-color:#6b7999;">
-          <?php endif; ?>
-          <span style="color:#f0f3bd;">
-            <a style="color:#f0f3bd;" href="<?php echo $dir ;?>">
-              <?php
-              echo $dir;
-              $stat = stat($dir);
-              ?>
-            </a>
-            <span class="float-right">
-              <?php
-              echo date('d/m/Y H:i:s', $stat['mtime']);
-              ?>
+        <a style="color:#f0f3bd;" href="<?php echo $dir ;?>">
+          <li class="list-group-item" style="background-color:#6b7999;">
+            <?php endif; ?>
+            <span style="color:#f0f3bd;">
+
+                <?php
+                echo $dir;
+                $stat = stat($dir);
+                ?>
+
+              <span class="float-right">
+                <?php
+                echo date('d/m/Y H:i:s', $stat['mtime']);
+                ?>
+              </span>
             </span>
-          </span>
-        </li>
+          </li>
+        </a>
         <?php
           $count++;
         endforeach;
