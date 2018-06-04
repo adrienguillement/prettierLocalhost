@@ -28,7 +28,7 @@ if ($projectCount > 0) { sort($dirArray); } // sort 'em
 ?>
 
 <body style="background-color:#282f3f;">
-    <div class="visible">
+    <div class="visible" style="background-color:#ffffff;">
         <nav class="navbar navbar-color navbar-expand-md">
             <div class="container-fluid text-navbar-color">
               <h1>Localhost</h1>
