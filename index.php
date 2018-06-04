@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 
@@ -30,60 +28,70 @@ if ($projectCount > 0) { sort($dirArray); } // sort 'em
 ?>
 
 <body style="background-color:#282f3f;">
-    <div class="visible" style="background-color:#ffffff;">
-        <nav class="navbar navbar-light navbar-expand-md" style="background-color:#1c2541;color:#0b101b;">
-            <div class="container-fluid"><a class="navbar-brand" href="#" style="color:#f0f3bd;">Localhost</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only" style="color:#f0f3bd;">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+    <div class="visible">
+        <nav class="navbar navbar-color navbar-expand-md">
+            <div class="container-fluid text-navbar-color">
+              <h1>Localhost</h1>
+              <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only" style="color:#f0f3bd;">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div
-                    class="collapse navbar-collapse" id="navcol-1">
+                    class="collapse navbar-collapse" id="navcol-1" style="margin-left: 5%;">
                     <ul class="nav navbar-nav">
                         <li class="nav-item" role="presentation">
-                          <a class="nav-link active" href="#" style="color:#f0f3bd;">
-                            <?php echo ($projectCount > 0)? $projectCount : "No"; ?> Projects
-                          </a>
+                          <?php echo ($projectCount > 0)? $projectCount : "No"; ?> Projects
                         </li>
                     </ul>
             </div>
     </div>
     </nav>
-    <ul class="list-group" style="background-color:#2ec4b6;">
-      <?php
-        if ($projectCount > 0) :
-          $count = 0;
-      ?>
-      <?php foreach ($dirArray as $dir):?>
-
-      <a style="color:#f0f3bd;" href="<?php echo $dir ;?>">
-      <?php
-      // Check to change the color one line in two
-      if($count % 2 == 0) : ?>
-        <li class="list-group-item" style="background-color:rgb(83,93,103);color:#f0f3bd;">
-      <?php else :?>
-        <a style="color:#f0f3bd;" href="<?php echo $dir ;?>">
-          <li class="list-group-item" style="background-color:#6b7999;">
-            <?php endif; ?>
-            <span style="color:#f0f3bd;">
-
-                <?php
+    <hr>
+    <br>
+    <?php
+      if ($projectCount > 0) :
+        $count = 0;
+    ?>
+    <div class="list-group">
+      <?php foreach ($dirArray as $dir){?>
+        <ahref="<?php echo $dir ;?>">
+        <?php
+        // Check to change the color one line in two
+        if($count % 2 == 0){ ?>
+          <a href="<?php echo $dir ;?>" class="list-group-item list-group-item-action active">
+            <span>
+              <?php
                 echo $dir;
                 $stat = stat($dir);
-                ?>
+              ?>
 
               <span class="float-right">
                 <?php
-                echo date('d/m/Y H:i:s', $stat['mtime']);
+                  echo date('d/m/Y H:i:s', $stat['mtime']);
                 ?>
               </span>
             </span>
-          </li>
-        </a>
-        <?php
-          $count++;
-        endforeach;
-        ?>
-        <?php else: ?>
-          <li class="list-group-item list-group-item-dark" style="background-color:rgb(83,93,103);"><span style="color:#f0f3bd;">Nothing here, start adding projects to your server.</span></li>
-        <?php endif; ?>
-      </ul>
+           </a>
+        <?php } else { ?>
+          <a href="<?php echo $dir ;?>" class="list-group-item list-group-item-action">
+            <span>
+              <?php
+                echo $dir;
+                $stat = stat($dir);
+              ?>
+
+              <span class="float-right">
+              <?php
+                echo date('d/m/Y H:i:s', $stat['mtime']);
+              ?>
+              </span>
+            </span>
+          </a>
+    <?php
+        }
+      $count++;
+      }
+    ?>
+  <?php else: ?>
+    <li class="list-group-item list-group-item-dark" style="background-color:rgb(83,93,103);"><span style="color:#f0f3bd;">Nothing here, start adding projects to your server.</span></li>
+  <?php endif; ?>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
